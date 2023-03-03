@@ -1,20 +1,29 @@
-<div class="cover-user-index">
-  <div class="container">
-    <div class="row justify-content-center">
-      <h1 class="font-weight-normal mt-5 mb-5">フォロワー一覧</h1>
-    </div>
-    <div class="row justify-content-center">
+<h1>Follower Users</h1>
+ <table class='table'>
+   <thead>
+    <tr>
+      <th>image</th>
+      <th>name</th>
+      <th colspan="3"></th>
+    </tr>
+   </thead>
+   <tbody>
+     <tr>
       <% @users.each do |user| %>
       <div class="one-post card w-100">
         <%= link_to user_path(user) do %>
-        <p class="caption h4"><%= user.name %></p>
-        <div class="d-flex">
-          <%= image_tag user.get_profile_image, size: '50x50', fallback: "no_image.png", class: "mb-3 mt-3 ml-3 profile-img" %>
-          <h4 class="ml-5"><%= user.name %></h4>
-        </div>
+          <td><%= image_tag user.get_profile_image, size: '50x50', fallback: "no_image.png", class: "mb-3 mt-3 ml-3 profile-img" %></td>
+          <td><%= user.name %></td>
+          <%= link_to follows_user_path(user) do %>
+          <td>フォロー数<%= user.following_user.count %></td>
+          <% end %>
+          <%= link_to followers_user_path(user) do %>
+          <td>フォロワー数<%= user.follower_user.count %></td>
+          <% end %>
+          <td><%= link_to 'Show', user %></td>
+      </tr>
+      </tbody>
+     </div>
         <% end %>
-      </div>
       <% end %>
-    </div>
-  </div>
-</div>
+  </table>
