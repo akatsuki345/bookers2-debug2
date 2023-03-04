@@ -5,6 +5,7 @@ class CreateFavorites < ActiveRecord::Migration[6.1]
       t.integer :book_id
 
       t.timestamps
+      t.index [:user_id, :book_id], unique: true
     end
   end
 end
