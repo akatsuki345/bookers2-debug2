@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2023_03_06_044907) do
     t.integer "book_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "book_id"], name: "index_favorites_on_user_id_and_book_id", unique: true
   end
 
   create_table "messages", force: :cascade do |t|
@@ -80,14 +81,6 @@ ActiveRecord::Schema.define(version: 2023_03_06_044907) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
-  create_table "post_comments", force: :cascade do |t|
-    t.text "comment"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "book_id"
   end
 
   create_table "relationships", force: :cascade do |t|
