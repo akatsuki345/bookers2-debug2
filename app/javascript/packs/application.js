@@ -27,3 +27,6 @@ window.raty = function(elem,opt) {
   raty.init();
   return raty;
 }
+
+import Chart from "chart.js/auto";
+global.Chart = Chart;
