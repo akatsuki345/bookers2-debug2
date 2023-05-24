@@ -18,11 +18,11 @@ Rails.application.routes.draw do
 
    devise_for :users
    resources :users do
+     get "search", to: "users#search"
     member do
       get :follows, :followers
     end
     resource :relationships, only: [:create, :destroy]
-    get "search_form" => "users#search_form"
    end
    resources :groups, except: [:destroy]
    resources :messages, only: [:create]
