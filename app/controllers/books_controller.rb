@@ -50,6 +50,15 @@ class BooksController < ApplicationController
     redirect_to books_path, notice: "successfully delete book!"
   end
 
+  def search
+    if params[:created_at] == ""
+      @search_book = "日付を選択してください"#①
+    else
+      create_at = params[:created_at]
+      @search_book = Book.where(['created_at LIKE ? ', "#{create_at}%"]).count#②
+    end
+  end
+
   private
     def book_params
       params.require(:book).permit(:title, :body)

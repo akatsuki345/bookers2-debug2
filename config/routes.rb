@@ -10,15 +10,16 @@ Rails.application.routes.draw do
   get "search" => "searches#search"
   root to: "home#top"
 
-
    resources :books do
+     collection do
+      get "search"
+     end
     resource :favorites, only: [:create, :destroy]
     resources :book_comments, only: [:create, :destroy]
    end
 
    devise_for :users
    resources :users do
-     get "search", to: "users#search"
     member do
       get :follows, :followers
     end
